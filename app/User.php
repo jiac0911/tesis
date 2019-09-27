@@ -41,6 +41,10 @@ class User extends Authenticatable {
 			->belongsToMany('App\Role')
 			->withTimestamps();
 	}
+	public function hospital() {
+		return $this
+			->belongsTo('App\Hospital');
+	}
 
 	public function authorizeRoles($roles) {
 
@@ -71,4 +75,5 @@ class User extends Authenticatable {
 		}
 		return false;
 	}
+
 }

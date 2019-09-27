@@ -19,6 +19,7 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index');
 
-Route::post('/h', function () {
-	return view('eje');
-});
+Route::post('/equipo', 'EquiposController@store');
+
+Route::get('/tecnicos', 'EquiposController@storeTecnicos');
+Route::post('/tecnicos', 'EquiposController@storeTecnicos');
