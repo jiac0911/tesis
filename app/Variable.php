@@ -10,4 +10,14 @@ class Variable extends Model {
 		return $this
 			->belongsToMany('App\Equipo');
 	}
+
+	public function subcategoria() {
+		return $this
+			->belongsTo('App\Subcategoria');
+	}
+
+	public function diccionario_variables() {
+		return $this
+			->hasMany('App\Diccionario_variable');
+	}
 }

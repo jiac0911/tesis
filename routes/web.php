@@ -21,5 +21,13 @@ Route::get('/', 'HomeController@index');
 
 Route::post('/equipo', 'EquiposController@store');
 
-Route::get('/tecnicos', 'EquiposController@storeTecnicos');
+Route::get('/createTecnicos/{equipo}', 'EquiposController@createTecnicos');
+Route::get('/tecnicos', 'HomeController@index');
 Route::post('/tecnicos', 'EquiposController@storeTecnicos');
+
+Route::post('/clinicos', 'EquiposController@storeClinicos');
+Route::get('/clinicos', 'HomeController@index');
+
+Route::get('/showEquipos', 'EquiposController@showEquipos');
+Route::get('/info', 'EquiposController@create');
+//Route::post('/score', 'EquiposController@calcularScore');

@@ -9,16 +9,18 @@
                 <div class="card-body">
                     <form method="POST" action="/tecnicos">
                     {{ csrf_field() }}
+                        @for ($i = 0; $i < 5; $i++)
+                            <div class="col-md-6 mb-3">
+                                <label for="ult_tec">{{ $opciones[$i]->variable }}</label>
+                                <select name="{{ $opciones[$i]->variable }}" class="form-control" required>
+                                    @foreach ($opciones[$i] as $opcion)
+                                        <option value="{{ $opcion->nivel }}">{{ $opcion->nombre }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        @endfor
+{{--
 
-                        <div class="col-md-6 mb-3">
-                            <label for="ult_tec">Ultima Tecnologia</label>
-                            <select name="estado_tecnologia" class="form-control" required>
-                              <option value="1">Tecnologia Actual</option>
-                              <option value="2">Tecnologia Adecuada</option>
-                              <option value="3">Tecnologia Obsoleta</option>
-                              <option value="4">Sin Informacion</option>
-                            </select>
-                        </div>
                         <div class="col-md-6 mb-3">
                             <label for="Años_sop">Años de Soporte Restantes</label>
                             <select name="años_soporte" class="form-control" required>
@@ -40,24 +42,6 @@
 
 
                         <div class="col-md-6 mb-3">
-                            <label for="parado">Tiempo Parado (Horas)</label>
-                            <input type="text" class="form-control" id="tiempo_parado" placeholder="" name="tiempo_parado" required>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="operacion">Tiempo en Operacion (Horas)</label>
-                            <input type="text" class="form-control" id="tiempo_operacion" placeholder="" name="tiempo_operacion" required>
-                        </div>
-
-                        <div class="col-md-6 mb-3">
-                            <label for="reparaciones">Numero de Reparaciones</label>
-                            <input type="text" class="form-control" id="nro_reparaciones" placeholder="" name="nro_reparaciones" required>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="años_rep">Años Considerados Para Reparaciones</label>
-                            <input type="text" class="form-control" id="años_reparaciones" placeholder="" name="años_reparaciones" required>
-                        </div>
-
-                        <div class="col-md-6 mb-3">
                             <label for="mediciones">Calibraciones y Mediciones</label>
                             <select name="mediciones" class="form-control" required>
                               <option value="1">Se le realiza calibración y/o mediciones y queda dentro de los rangos establecidos</option>
@@ -65,6 +49,7 @@
                               <option value="4">Necesita Calibracion y/o Mediciones Pero no se Realizan</option>
                             </select>
                         </div>
+
                         <div class="col-md-6 mb-3">
                             <label for="mant_prev">Cantidad Mantenimientos Preventivos Anual</label>
                             <input type="text" class="form-control" id="cant_prev" placeholder="" name="cant_prev" required>
@@ -76,11 +61,11 @@
                         <div>
                             <input name="equipo" type="text" value="{{ $equipo }}" style="opacity:0; position:absolute;">
                         </div>
-
+ --}}
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ 'Siguiente' }}
+                                    {{ 'Guardar' }}
                                 </button>
                             </div>
                         </div>

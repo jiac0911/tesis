@@ -17,7 +17,18 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/simple-sidebar.css') }}" rel="stylesheet">
+
+
+
+
+
+
+
+
 </head>
 <body>
     <div id="app">
@@ -72,8 +83,21 @@
             </div>
         </nav>
 
-        <main class="py-4">
-            @yield('content')
+        <main class="">
+            <div class="d-flex" id="wrapper">
+                <!-- Sidebar -->
+                <div class="bg-light border-right" id="sidebar-wrapper">
+                    <div class="sidebar-heading">Menu </div>
+                    <div class="list-group list-group-flush">
+                        <a href="/showEquipos" class="list-group-item list-group-item-action bg-light">Equipos Creados</a>
+                        <a href="/showScore" class="list-group-item list-group-item-action bg-light">Equipos Calculados</a>
+                        <a href="/info" class="list-group-item list-group-item-action bg-light">Nuevo Equipo</a>
+                    </div>
+                </div>
+                <div id="page-content-wrapper">
+                    @yield('content')
+                </div>
+            </div>
         </main>
     </div>
 </body>
