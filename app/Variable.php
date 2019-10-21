@@ -20,4 +20,8 @@ class Variable extends Model {
 		return $this
 			->hasMany('App\Diccionario_variable');
 	}
+
+	public static function peso_final() {
+		$variables = \App\Variable::all();
+	}
 }

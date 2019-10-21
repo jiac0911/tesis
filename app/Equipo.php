@@ -15,6 +15,6 @@ class Equipo extends Model {
 
 	public function variable() {
 		return $this
-			->belongsToMany('App\Variable');
+			->belongsToMany('App\Variable')->withPivot('valor');
 	}
 }

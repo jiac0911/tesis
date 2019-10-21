@@ -36,7 +36,7 @@ class HomeController extends Controller {
 
 			return view('homeAdmin');
 		}
-		dd('MAL');
+		//dd('MAL');
 	}
 
 	public function someAdminStuff(Request $request) {

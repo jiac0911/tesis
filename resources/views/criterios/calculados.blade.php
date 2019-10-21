@@ -8,9 +8,10 @@
                 <div class="card mb-3" >
                     <div class="card-body">
                         <h5 class="card-title">{{ $equipo->nombre }}</h5>
-                            <a href="/createTecnicos/{{ $equipo->id }}" class="btn btn-info">Criterios Tecnicos</a>
-                            <a href="/createClinicos/{{ $equipo->id }}" class="btn btn-info">Criterios Clinicos</a>
-                            <a href="/score/{{ $equipo->id }}" class="btn btn-info">Calcular</a>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Ubicación: {{ $equipo->ubicacion }}</li>
+                            <li class="list-group-item">Recomendacion: {{ $equipo->recomendacion }}</li>
+                        </ul>
                     </div>
                 </div>
 

@@ -25,9 +25,12 @@ Route::get('/createTecnicos/{equipo}', 'EquiposController@createTecnicos');
 Route::get('/tecnicos', 'HomeController@index');
 Route::post('/tecnicos', 'EquiposController@storeTecnicos');
 
-Route::post('/clinicos', 'EquiposController@storeClinicos');
+Route::get('/createClinicos/{equipo}', 'EquiposController@createClinicos');
 Route::get('/clinicos', 'HomeController@index');
+Route::post('/clinicos', 'EquiposController@storeClinicos');
 
 Route::get('/showEquipos', 'EquiposController@showEquipos');
+Route::get('/showCalculados', 'EquiposController@showCalculados');
 Route::get('/info', 'EquiposController@create');
-//Route::post('/score', 'EquiposController@calcularScore');
+Route::get('/score/{equipo}', 'EquiposController@calcularScore');
+Route::get('/score/{equipo}', 'EquiposController@calcularScore');
