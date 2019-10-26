@@ -16,9 +16,9 @@
 // });
 
 Auth::routes();
-
 Route::get('/', 'HomeController@index');
 
+//Rutas para usuario
 Route::post('/equipo', 'EquiposController@store');
 
 Route::get('/createTecnicos/{equipo}', 'EquiposController@createTecnicos');
@@ -30,7 +30,16 @@ Route::get('/clinicos', 'HomeController@index');
 Route::post('/clinicos', 'EquiposController@storeClinicos');
 
 Route::get('/showEquipos', 'EquiposController@showEquipos');
+Route::get('/showEquipo/{equipo}', 'EquiposController@showEquipo');
 Route::get('/showCalculados', 'EquiposController@showCalculados');
 Route::get('/info', 'EquiposController@create');
 Route::get('/score/{equipo}', 'EquiposController@calcularScore');
-Route::get('/score/{equipo}', 'EquiposController@calcularScore');
+
+//Rutas para admin
+
+Route::resource('categoria', 'CategoriasController');
+Route::resource('subcategoria', 'SubcategoriasController');
+Route::resource('variable', 'VariablesController');
+Route::resource('diccionario_variable', 'Diccionario_variablesController');
+Route::get('/diccionario/{variable}', 'Diccionario_variablesController@showOpciones');
+Route::resource('propuesta', 'PropuestasController');

@@ -5,7 +5,10 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class Variable extends Model {
-
+	public $timestamps = false;
+	protected $fillable = [
+		'nombre', 'peso',
+	];
 	public function equipo() {
 		return $this
 			->belongsToMany('App\Equipo');

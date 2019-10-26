@@ -89,12 +89,14 @@
                 <div class="bg-light border-right" id="sidebar-wrapper">
                     <div class="sidebar-heading">Menu </div>
                     <div class="list-group list-group-flush">
-                        <a href="/showEquipos" class="list-group-item list-group-item-action bg-light">Equipos Creados</a>
-                        <a href="/showCalculados" class="list-group-item list-group-item-action bg-light">Equipos Calculados</a>
-                        <a href="/info" class="list-group-item list-group-item-action bg-light">Nuevo Equipo</a>
+                        <a href="/categoria" class="list-group-item list-group-item-action bg-light">Categoria</a>
+                        <a href="/subcategoria" class="list-group-item list-group-item-action bg-light">Subcategorias</a>
+                        <a href="/variable" class="list-group-item list-group-item-action bg-light">Variables</a>
+                        <a href="/propuesta" class="list-group-item list-group-item-action bg-light">Propuestas</a>
+                        <a href="{{ route('register') }}" class="list-group-item list-group-item-action bg-light">Crear Usuario</a>
                     </div>
                 </div>
-                <div id="page-content-wrapper">
+                <div id="page-content-wrapper-admin">
                     @yield('content')
                 </div>
             </div>

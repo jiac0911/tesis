@@ -2,25 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Diccionario_variable;
+use App\Categoria;
 use Illuminate\Http\Request;
 
-class Diccionaro_variablesController extends Controller {
+class CategoriasController extends Controller {
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-
-	public function categorias() {
-		$categorias = \App\Categoria::all();
-		$subcategorias = $categorias[0]->subcategorias;
-		$variables = $subcategorias->variables;
-		dd($variables);
-	}
-
 	public function index() {
-		//
+		$categorias = Categoria::orderBy('id', 'DESC')->paginate(3);
+		return view('categoria.index', compact('categorias'));
 	}
 
 	/**
@@ -45,41 +38,46 @@ class Diccionaro_variablesController extends Controller {
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  \App\Diccionario_variable  $diccionario_variable
+	 * @param  \App\Categoria  $categoria
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show(Diccionario_variable $diccionario_variable) {
+	public function show(Categoria $categoria) {
 		//
 	}
 
 	/**
 	 * Show the form for editing the specified resource.
 	 *
-	 * @param  \App\Diccionario_variable  $diccionario_variable
+	 * @param  \App\Categoria  $categoria
 	 * @return \Illuminate\Http\Response
 	 */
-	public function edit(Diccionario_variable $diccionario_variable) {
-		//
+	public function edit($id) {
+		$categoria = categoria::find($id);
+		//dd($categoria);
+		return view('categoria.edit', compact('categoria'));
 	}
 
 	/**
 	 * Update the specified resource in storage.
 	 *
 	 * @param  \Illuminate\Http\Request  $request
-	 * @param  \App\Diccionario_variable  $diccionario_variable
+	 * @param  \App\Categoria  $categoria
 	 * @return \Illuminate\Http\Response
 	 */
-	public function update(Request $request, Diccionario_variable $diccionario_variable) {
-		//
+	public function update(Request $request, $id) {
+		$this->validate($request, ['nombre' => 'required', 'peso' => 'required']);
+
+		categoria::find($id)->update($request->all());
+		return redirect()->route('categoria.index')->with('success', 'Registro actualizado satisfactoriamente');
 	}
 
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  \App\Diccionario_variable  $diccionario_variable
+	 * @param  \App\Categoria  $categoria
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy(Diccionario_variable $diccionario_variable) {
+	public function destroy(Categoria $categoria) {
 		//
 	}
 }

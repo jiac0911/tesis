@@ -7,7 +7,7 @@
             <div class="col-md-12" >
                 <div class="card mb-3" >
                     <div class="card-body">
-                        <h5 class="card-title">{{ $equipo->nombre }}</h5>
+                        <a href="/score/{{ $equipo->id }}"><h5 class="card-title">{{ $equipo->nombre }}</h5></a>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">Ubicación: {{ $equipo->ubicacion }}</li>
                             <li class="list-group-item">Recomendacion: {{ $equipo->recomendacion }}</li>

@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Propuesta;
+use App\Subcategoria;
 use Illuminate\Http\Request;
 
-class PropuestasController extends Controller {
+class SubcategoriasController extends Controller {
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		$propuestas = Propuesta::orderBy('id', 'DESC')->get();
-		return view('propuesta.index', compact('propuestas'));
+		$subcategorias = Subcategoria::orderBy('id', 'DESC')->get();
+		return view('subcategoria.index', compact('subcategorias'));
 	}
 
 	/**
@@ -38,45 +38,45 @@ class PropuestasController extends Controller {
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  \App\Propuesta  $propuesta
+	 * @param  \App\Subcategoria  $subcategoria
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show(Propuesta $propuesta) {
+	public function show(Subcategoria $subcategoria) {
 		//
 	}
 
 	/**
 	 * Show the form for editing the specified resource.
 	 *
-	 * @param  \App\Propuesta  $propuesta
+	 * @param  \App\Subcategoria  $subcategoria
 	 * @return \Illuminate\Http\Response
 	 */
 	public function edit($id) {
-		$propuesta = Propuesta::find($id);
+		$subcategoria = Subcategoria::find($id);
 		//dd($categoria);
-		return view('propuesta.edit', compact('propuesta'));
+		return view('subcategoria.edit', compact('subcategoria'));
 	}
 
 	/**
 	 * Update the specified resource in storage.
 	 *
 	 * @param  \Illuminate\Http\Request  $request
-	 * @param  \App\Propuesta  $propuesta
+	 * @param  \App\Subcategoria  $subcategoria
 	 * @return \Illuminate\Http\Response
 	 */
 	public function update(Request $request, $id) {
-		$this->validate($request, ['minimo' => 'required', 'maximo' => 'required', 'recomendacion' => 'required']);
-		Propuesta::find($id)->update($request->all());
-		return redirect()->route('propuesta.index')->with('success', 'Registro actualizado satisfactoriamente');
+		$this->validate($request, ['nombre' => 'required', 'peso' => 'required']);
+		Subcategoria::find($id)->update($request->all());
+		return redirect()->route('subcategoria.index')->with('success', 'Registro actualizado satisfactoriamente');
 	}
 
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  \App\Propuesta  $propuesta
+	 * @param  \App\Subcategoria  $subcategoria
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy(Propuesta $propuesta) {
+	public function destroy(Subcategoria $subcategoria) {
 		//
 	}
 }

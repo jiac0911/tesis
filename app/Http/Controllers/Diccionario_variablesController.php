@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Variable;
+use App\Diccionario_variable;
 use Illuminate\Http\Request;
 
-class VariablesController extends Controller {
+class Diccionario_variablesController extends Controller {
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -13,8 +13,13 @@ class VariablesController extends Controller {
 	 */
 
 	public function index() {
-		$variables = variable::orderBy('id', 'DESC')->get();
-		return view('variable.index', compact('variables'));
+		//
+	}
+	public function showOpciones($id) {
+		$variable = \App\variable::find($id);
+		$diccionario_variables = $variable->diccionario_variables;
+		//dd($diccionario_variables);
+		return view('diccionario.index', compact('diccionario_variables'));
 	}
 
 	/**
@@ -39,45 +44,47 @@ class VariablesController extends Controller {
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  \App\Variable  $variable
+	 * @param  \App\Diccionario_variable  $diccionario_variable
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show(Variable $variable) {
+	public function show(Diccionario_variable $diccionario_variable) {
 		//
 	}
 
 	/**
 	 * Show the form for editing the specified resource.
 	 *
-	 * @param  \App\Variable  $variable
+	 * @param  \App\Diccionario_variable  $diccionario_variable
 	 * @return \Illuminate\Http\Response
 	 */
 	public function edit($id) {
-		$variable = variable::find($id);
-		//dd($categoria);
-		return view('variable.edit', compact('variable'));
+		$diccionario_variable = diccionario_variable::find($id);
+		//dd($diccionario_variable);
+		return view('diccionario.edit', compact('diccionario_variable'));
 	}
 
 	/**
 	 * Update the specified resource in storage.
 	 *
 	 * @param  \Illuminate\Http\Request  $request
-	 * @param  \App\Variable  $variable
+	 * @param  \App\Diccionario_variable  $diccionario_variable
 	 * @return \Illuminate\Http\Response
 	 */
 	public function update(Request $request, $id) {
-		$this->validate($request, ['peso' => 'required']);
-		variable::find($id)->update($request->all());
+		//dd($id);
+		$this->validate($request, ['nombre' => 'required', 'nivel' => 'required']);
+
+		diccionario_variable::find($id)->update($request->all());
 		return redirect()->route('variable.index')->with('success', 'Registro actualizado satisfactoriamente');
 	}
 
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  \App\Variable  $variable
+	 * @param  \App\Diccionario_variable  $diccionario_variable
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy(Variable $variable) {
+	public function destroy(Diccionario_variable $diccionario_variable) {
 		//
 	}
 }

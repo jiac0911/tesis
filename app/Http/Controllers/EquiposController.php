@@ -55,9 +55,28 @@ class EquiposController extends Controller {
 		//dd($equipo);
 		$equipo->save();
 		//dd($equipo->id);
-		return redirect('/');
+		$request->session()->flash('alert-success', 'Equipo Guardado');
+		return redirect('/showEquipos');
 	}
-	public function showEquipos() {
+	public function showEquipo($id) {
+		$equipo = Equipo::find($id);
+
+		$propuestas = \App\Propuesta::all();
+		$propuestaFinal = "";
+		foreach ($propuestas as $propuesta) {
+			// dd($propuesta->minimo);
+			// dd($equipo->score);
+			if ($propuesta->minimo < $equipo->score && $propuesta->maximo > $equipo->score) {
+				//dd('aaa');
+				$equipo->recomendacion = $propuesta->recomendacion;
+				//dd($equipo);
+			}
+		}
+		return view('equipo.show', compact('equipo'));
+		##dd($equipos);
+	}
+
+	public function showEquipos(Equipo $equipo) {
 		$hospital = auth()->user()->hospital;
 		$equipos = $hospital->equipos;
 		##dd($equipos);
@@ -185,16 +204,16 @@ class EquiposController extends Controller {
 		$form = request()->all();
 		//dd($form);
 		//dd(auth()->user()->hospital->id);
-		$this->validate(request(), [
+		// $this->validate(request(), [
 
-			'estado_de_tecnologia' => 'required', #
-			'Soporte_Tecnico_(años_restantes)' => 'required', #
-			'suministro_de_repuestos' => 'required', #
-			'mediciones' => 'required', #
-			'mantenimientos_preventivos_(anual)' => 'required', #
+		// 	'estado_de_tecnologia' => 'required', #
+		// 	'Soporte_Tecnico_(años_restantes)' => 'required', #
+		// 	'suministro_de_repuestos' => 'required', #
+		// 	'mediciones' => 'required', #
+		// 	'mantenimientos_preventivos_(anual)' => 'required', #
 
-		]);
-///////////hasta aca
+		// ]);
+		///////////hasta aca
 		//dd($request);
 		//$form = request()->all();
 		//dd($form);
@@ -245,7 +264,7 @@ class EquiposController extends Controller {
 				3 => ['valor' => $vida],
 				4 => ['valor' => $eficiencia],
 				6 => ['valor' => $tasa_falla],
-				17 => ['valor' => $form['mediciones']],
+				17 => ['valor' => $form['Mediciones']],
 				8 => ['valor' => $form['mantenimientos_preventivos_(anual)']],
 			]
 			);
@@ -256,26 +275,26 @@ class EquiposController extends Controller {
 			$equipo->variable()->updateExistingPivot(3, ['valor' => $vida]);
 			$equipo->variable()->updateExistingPivot(4, ['valor' => $eficiencia]);
 			$equipo->variable()->updateExistingPivot(6, ['valor' => $tasa_falla]);
-			$equipo->variable()->updateExistingPivot(17, ['valor' => $form['mediciones']]);
+			$equipo->variable()->updateExistingPivot(17, ['valor' => $form['Mediciones']]);
 			$equipo->variable()->updateExistingPivot(8, ['valor' => $form['mantenimientos_preventivos_(anual)']]);
 
 		}
 		$equipo->tecnicos = 1;
 
 		$equipo->save();
-		return redirect('/');
+		return redirect('/showEquipos');
 	}
 
 	public function storeClinicos(Request $request) {
 		$form = request()->all();
 		//dd($form);
 		//dd(auth()->user()->hospital->id);
-		$this->validate(request(), [
-			'aceptabilidad_clinica' => 'required', #
-			'funcion_clinica' => 'required', #
-			'contribucion_al_servicio' => 'required',
-			'nivel_de_riesgo_invima' => 'required',
-		]);
+		// $this->validate(request(), [
+		// 	'aceptabilidad_clinica' => 'required', #
+		// 	'funcion_clinica' => 'required', #
+		// 	'contribucion_al_servicio' => 'required',
+		// 	'nivel_de_riesgo_invima' => 'required',
+		// ]);
 
 		//dd($request);
 		//$form = request()->all();
@@ -327,7 +346,7 @@ class EquiposController extends Controller {
 		$equipo->clinicos = 1;
 
 		$equipo->save();
-		return redirect('/');
+		return redirect('/showEquipos');
 	}
 
 	public function calcularScore(Equipo $equipo) {
@@ -352,7 +371,7 @@ class EquiposController extends Controller {
 		// $info['nombre'] = $equipo->nombre;
 		// $info['ubicacion'] = $equipo->ubicacion;
 		// $info['recomendacion'] = $propuestaFinal;
-		return redirect('/showCalculados');
+		return redirect("/showEquipo/" . $equipo->id);
 
 	}
 
@@ -364,7 +383,6 @@ class EquiposController extends Controller {
 		$propuestaFinal = "";
 		$equiposFinal = array();
 		foreach ($equipos as $equipo) {
-
 			foreach ($propuestas as $propuesta) {
 				// dd($propuesta->minimo);
 				// dd($equipo->score);

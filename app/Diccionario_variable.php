@@ -5,6 +5,10 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class Diccionario_variable extends Model {
+	public $timestamps = false;
+	protected $fillable = [
+		'nombre', 'nivel',
+	];
 
 	public function variable() {
 		return $this

@@ -49,6 +49,7 @@ class User extends Authenticatable {
 	public function authorizeRoles($roles) {
 
 		if ($this->hasAnyRole($roles)) {
+			//dd("aaaa");
 			return true;
 		}
 		return false;
