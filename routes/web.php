@@ -32,6 +32,7 @@ Route::post('/clinicos', 'EquiposController@storeClinicos');
 Route::get('/showEquipos', 'EquiposController@showEquipos');
 Route::get('/showEquipo/{equipo}', 'EquiposController@showEquipo');
 Route::get('/showCalculados', 'EquiposController@showCalculados');
+Route::get('/showSin', 'EquiposController@showSin');
 Route::get('/info', 'EquiposController@create');
 Route::get('/score/{equipo}', 'EquiposController@calcularScore');
 

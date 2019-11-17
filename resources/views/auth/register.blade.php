@@ -43,8 +43,21 @@
 
                             <div class="col-md-6">
                                 <select name="rol" class="form-control" required>
-                                    @foreach ($roles as $rol)
+                                    @foreach ($param[0] as $rol)
                                         <option value="{{ $rol->id }}">{{ $rol->nombre }}</option>
+                                    @endforeach
+                                </select>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="hospital_id" class="col-md-4 col-form-label text-md-right">{{ __('Hospital') }}</label>
+
+                            <div class="col-md-6">
+                                <select name="hospital_id" class="form-control" required>
+                                    @foreach ($param[1] as $hospital)
+                                        <option value="{{ $hospital->id }}">{{ $hospital->nombre }}</option>
                                     @endforeach
                                 </select>
 

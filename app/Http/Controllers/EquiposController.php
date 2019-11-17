@@ -77,10 +77,20 @@ class EquiposController extends Controller {
 	}
 
 	public function showEquipos(Equipo $equipo) {
+
+		$hospital = auth()->user()->hospital;
+
+		$equipos = $hospital->equipos;
+
+		return view('criterios/creados')->with('equipos', $equipos);
+
+	}
+
+	public function showSin(Equipo $equipo) {
 		$hospital = auth()->user()->hospital;
 		$equipos = $hospital->equipos;
 		##dd($equipos);
-		return view('criterios/creados')->with('equipos', $equipos);
+		return view('criterios/sinCalcular')->with('equipos', $equipos);
 
 	}
 
@@ -219,17 +229,17 @@ class EquiposController extends Controller {
 		//dd($form);
 
 		$equipo = Equipo::find($form['equipo']);
-		$vida = $equipo['edad'] * 100 / $equipo['vida_util'];
+		$vida = $equipo['edad'] / $equipo['vida_util'];
 		$eficiencia = ($equipo['tiempo_operacion'] - $equipo['tiempo_parado']) * 100 / $equipo['tiempo_operacion'];
 		$tasa_falla = $equipo['nro_reparaciones'] / $equipo['años_reparaciones'];
-
-		if ($vida = 0) {
+		//dd($vida);
+		if ($vida == 0) {
 			$vida = 0;
 		} elseif ($vida > 0 && $vida < 0.6) {
 			$vida = 1;
 		} elseif ($vida >= 0.6 && $vida < 1) {
 			$vida = 2;
-		} elseif ($vida = 1) {
+		} elseif ($vida == 1) {
 			$vida = 3;
 		} else {
 			$vida = 4;
@@ -244,39 +254,40 @@ class EquiposController extends Controller {
 		} else {
 			$eficiencia = 4;
 		}
-
-		if ($tasa_falla = 0) {
+		//dd($tasa_falla);
+		if ($tasa_falla == 0) {
 			$tasa_falla = 0;
 		} elseif ($tasa_falla > 0 && $tasa_falla <= 1) {
 			$tasa_falla = 1;
 		} elseif ($tasa_falla > 1 && $tasa_falla <= 1.5) {
 			$tasa_falla = 2;
-		} elseif ($tasa_falla > 1.5 && $tasa_falla >= 2) {
+		} elseif ($tasa_falla > 1.5 && $tasa_falla <= 2) {
 			$tasa_falla = 3;
 		} else {
 			$tasa_falla = 4;
 		}
+		//dd($tasa_falla);
 		if (!$equipo->tecnicos) {
 			$equipo->variable()->attach([
-				14 => ['valor' => $form['estado_de_tecnologia']],
-				21 => ['valor' => $form['Soporte_Tecnico_(años_restantes)']],
-				15 => ['valor' => $form['suministro_de_repuestos']],
+				14 => ['valor' => $form['Estado_de_Tecnología']],
+				21 => ['valor' => $form['Soporte_Técnico_(Años_Restantes)']],
+				15 => ['valor' => $form['Suministro_de_Repuestos']],
 				3 => ['valor' => $vida],
 				4 => ['valor' => $eficiencia],
 				6 => ['valor' => $tasa_falla],
 				17 => ['valor' => $form['Mediciones']],
-				8 => ['valor' => $form['mantenimientos_preventivos_(anual)']],
+				8 => ['valor' => $form['Mantenimientos_Preventivos_(Anual)']],
 			]
 			);
 		} else {
-			$equipo->variable()->updateExistingPivot(14, ['valor' => $form['estado_de_tecnologia']]);
-			$equipo->variable()->updateExistingPivot(21, ['valor' => $form['Soporte_Tecnico_(años_restantes)']]);
-			$equipo->variable()->updateExistingPivot(15, ['valor' => $form['suministro_de_repuestos']]);
+			$equipo->variable()->updateExistingPivot(14, ['valor' => $form['Estado_de_Tecnología']]);
+			$equipo->variable()->updateExistingPivot(21, ['valor' => $form['Soporte_Técnico_(Años_Restantes)']]);
+			$equipo->variable()->updateExistingPivot(15, ['valor' => $form['Suministro_de_Repuestos']]);
 			$equipo->variable()->updateExistingPivot(3, ['valor' => $vida]);
 			$equipo->variable()->updateExistingPivot(4, ['valor' => $eficiencia]);
 			$equipo->variable()->updateExistingPivot(6, ['valor' => $tasa_falla]);
 			$equipo->variable()->updateExistingPivot(17, ['valor' => $form['Mediciones']]);
-			$equipo->variable()->updateExistingPivot(8, ['valor' => $form['mantenimientos_preventivos_(anual)']]);
+			$equipo->variable()->updateExistingPivot(8, ['valor' => $form['Mantenimientos_Preventivos_(Anual)']]);
 
 		}
 		$equipo->tecnicos = 1;
@@ -324,21 +335,22 @@ class EquiposController extends Controller {
 		} else {
 			$cm_cc = 4;
 		}
+		//dd($form);
 		if (!$equipo->clinicos) {
 			$equipo->variable()->attach([
-				18 => ['valor' => $form['aceptabilidad_clinica']],
-				19 => ['valor' => $form['funcion_clinica']],
-				20 => ['valor' => $form['contribucion_al_servicio']],
-				16 => ['valor' => $form['nivel_de_riesgo_invima']],
+				18 => ['valor' => $form['Aceptabilidad_Clínica']],
+				19 => ['valor' => $form['Función_Clínica']],
+				20 => ['valor' => $form['Contribución_al_Servicio']],
+				16 => ['valor' => $form['Nivel_de_Riesgo_INVIMA']],
 				10 => ['valor' => $cm_cc],
 				9 => ['valor' => $cm_ca],
 			]
 			);
 		} else {
-			$equipo->variable()->updateExistingPivot(18, ['valor' => $form['aceptabilidad_clinica']]);
-			$equipo->variable()->updateExistingPivot(19, ['valor' => $form['funcion_clinica']]);
-			$equipo->variable()->updateExistingPivot(20, ['valor' => $form['contribucion_al_servicio']]);
-			$equipo->variable()->updateExistingPivot(16, ['valor' => $form['nivel_de_riesgo_invima']]);
+			$equipo->variable()->updateExistingPivot(18, ['valor' => $form['Aceptabilidad_Clínica']]);
+			$equipo->variable()->updateExistingPivot(19, ['valor' => $form['Función_Clínica']]);
+			$equipo->variable()->updateExistingPivot(20, ['valor' => $form['Contribución_al_Servicio']]);
+			$equipo->variable()->updateExistingPivot(16, ['valor' => $form['Nivel_de_Riesgo_INVIMA']]);
 			$equipo->variable()->updateExistingPivot(10, ['valor' => $cm_cc]);
 			$equipo->variable()->updateExistingPivot(9, ['valor' => $cm_ca]);
 

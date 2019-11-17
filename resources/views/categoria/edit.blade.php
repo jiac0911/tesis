@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Informacion de la Categoria</div>
+                <div class="card-header">Información de la Categoría</div>
                 <div class="card-body">
                     <form method="POST" action="/categoria/{{ $categoria->id }}">
                         {{ csrf_field() }}

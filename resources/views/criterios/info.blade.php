@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Informacion del equipo</div>
+                <div class="card-header">Información del equipo</div>
                 <div class="card-body">
                     <form method="POST" action="/equipo">
                     {{ csrf_field() }}
@@ -22,11 +22,11 @@
                             <input type="text" class="form-control" id="serie" placeholder="" name="serie" >
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="firstName">Ubicacion*</label>
+                            <label for="firstName">Ubicación*</label>
                             <input type="text" class="form-control" id="ubicacion" placeholder="" name="ubicacion" required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="firstName">Codigo</label>
+                            <label for="firstName">Código</label>
                             <input type="text" class="form-control" id="codigo" placeholder="" name="codigo" >
                         </div>
 
@@ -39,7 +39,7 @@
                             <input type="text" class="form-control" id="edad" placeholder="" name="edad" required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="firstName">Vida Util*</label>
+                            <label for="firstName">Vida Útil*</label>
                             <input type="text" class="form-control" id="vida_util" placeholder="" name="vida_util" required>
                         </div>
 
@@ -65,20 +65,20 @@
 
 
                         <div class="col-md-6 mb-3">
-                            <label for="parado">Tiempo Parado Que Debio Operar (Horas)*</label>
+                            <label for="parado">Tiempo Parado Que Debió Operar (Horas)*</label>
                             <input type="text" class="form-control" id="tiempo_parado" placeholder="" name="tiempo_parado" required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="operacion">Tiempo en Operacion (Horas)*</label>
+                            <label for="operacion">Tiempo en Operación (Horas)*</label>
                             <input type="text" class="form-control" id="tiempo_operacion" placeholder="" name="tiempo_operacion" required>
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <label for="reparaciones">Numero de Reparaciones*</label>
+                            <label for="reparaciones">Número de Reparaciones*</label>
                             <input type="text" class="form-control" id="nro_reparaciones" placeholder="" name="nro_reparaciones" required>
                         </div>
                         <div class="col-md-12 mb-3">
-                            <label for="años_rep">Numero de años en que se hicieron las reparaciones*</label>
+                            <label for="años_rep">Número de años en que se hicieron las reparaciones*</label>
                             <input type="text" class="form-control col-md-6" id="años_reparaciones" placeholder="" name="años_reparaciones" required>
                         </div>
                         <div class="form-group row ">

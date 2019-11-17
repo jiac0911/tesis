@@ -32,10 +32,13 @@
 </head>
 <body>
     <div id="app">
+        @if(session('message'))
+          {{session('message')}}
+        @endif
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Vida util
+                    Vida Útil
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -87,10 +90,10 @@
             <div class="d-flex" id="wrapper">
                 <!-- Sidebar -->
                 <div class="bg-light border-right" id="sidebar-wrapper">
-                    <div class="sidebar-heading">Menu </div>
+                    <div class="sidebar-heading">Menú </div>
                     <div class="list-group list-group-flush">
-                        <a href="/categoria" class="list-group-item list-group-item-action bg-light">Categoria</a>
-                        <a href="/subcategoria" class="list-group-item list-group-item-action bg-light">Subcategorias</a>
+                        <a href="/categoria" class="list-group-item list-group-item-action bg-light">Categoría</a>
+                        <a href="/subcategoria" class="list-group-item list-group-item-action bg-light">Subcategorías</a>
                         <a href="/variable" class="list-group-item list-group-item-action bg-light">Variables</a>
                         <a href="/propuesta" class="list-group-item list-group-item-action bg-light">Propuestas</a>
                         <a href="{{ route('register') }}" class="list-group-item list-group-item-action bg-light">Crear Usuario</a>

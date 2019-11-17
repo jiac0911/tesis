@@ -9,7 +9,7 @@
                     <h5 class="card-title">{{ $equipo->nombre }}</h5>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">Ubicación: {{ $equipo->ubicacion }}</li>
-                        <li class="list-group-item">Recomendacion: {{ $equipo->recomendacion }}</li>
+                        <li class="list-group-item">Recomendación: {{ $equipo->recomendacion }}</li>
                         <li class="list-group-item">Edad: {{ $equipo->edad }}</li>
                     </ul>
 

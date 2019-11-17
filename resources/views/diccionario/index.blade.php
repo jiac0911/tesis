@@ -4,12 +4,12 @@
   <div class="container ">
     <div class="row ">
         <div class="col-md-8" >
-              <div ><h3>Propuestas</h3></div>
+              <div ><h3>Opciones</h3></div>
               <div class="table-container">
                 <table id="mytable" class="table table-bordred table-striped" >
                  <thead>
                    <th>Nombre</th>
-                   <th>Nivel (Mas alto, afecta negativamente el score)</th>
+                   <th>Nivel (Más alto, afecta negativamente el score)</th>
                    <th>Editar</th>
     {{--                <th>Eliminar</th> --}}
                  </thead>

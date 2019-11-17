@@ -8,16 +8,15 @@
       @endif
   </div>
 <div class="container ">
-    @if($equipos->count())
-    @foreach ($equipos as $equipo)
+{{--     @if($equipos->count())
+ --}}    @foreach ($equipos as $equipo)
+        @if($equipo->score==null)
         <div class="row justify-content-center">
             <div class="col-md-12" >
                 <div class="card mb-3" >
                     <div class="card-body">
                         <h3 class="card-title">{{ $equipo->nombre }}</h5>
-                          @if($equipo->score!=null)
-                            <p style="color:red;" class="card-title">Ya Está Calculado</p>
-                          @endif
+
                           @if($equipo->tecnicos==0)
                             <p style="color:green;" class="card-title">Faltan los criterios técnicos</p>
                           @endif
@@ -35,9 +34,10 @@
 
             </div>
         </div>
+        @endif
     @endforeach
-    @endif
-</div>
+{{--     @endif
+ --}}</div>
 @endsection
 
 

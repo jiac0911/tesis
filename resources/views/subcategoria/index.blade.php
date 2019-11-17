@@ -10,7 +10,7 @@
                  <thead>
                    <th>Nombre</th>
                    <th>Peso</th>
-                   <th>Categoria</th>
+                   <th>Categoría</th>
                    <th>Editar</th>
     {{--                <th>Eliminar</th> --}}
                  </thead>
