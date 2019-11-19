@@ -39,6 +39,7 @@ Route::get('/score/{equipo}', 'EquiposController@calcularScore');
 //Rutas para admin
 
 Route::resource('categoria', 'CategoriasController');
+Route::resource('hospital', 'HospitalsController');
 Route::resource('subcategoria', 'SubcategoriasController');
 Route::resource('variable', 'VariablesController');
 Route::resource('diccionario_variable', 'Diccionario_variablesController');

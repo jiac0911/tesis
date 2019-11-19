@@ -32,8 +32,13 @@
 </head>
 <body>
     <div id="app">
-        @if(session('message'))
-          {{session('message')}}
+        @if(!empty($msg))
+          <div class="alert alert-danger"> {{ $msg }}</div>
+        @endif
+        @if (session('msg'))
+            <div class="alert alert-danger">
+                {{ session('msg') }}
+            </div>
         @endif
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -97,6 +102,7 @@
                         <a href="/variable" class="list-group-item list-group-item-action bg-light">Variables</a>
                         <a href="/propuesta" class="list-group-item list-group-item-action bg-light">Propuestas</a>
                         <a href="{{ route('register') }}" class="list-group-item list-group-item-action bg-light">Crear Usuario</a>
+                        <a href="/hospital/create" class="list-group-item list-group-item-action bg-light">Crear Hospital</a>
                     </div>
                 </div>
                 <div id="page-content-wrapper-admin">

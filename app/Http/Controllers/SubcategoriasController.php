@@ -66,6 +66,25 @@ class SubcategoriasController extends Controller {
 	 */
 	public function update(Request $request, $id) {
 		$this->validate($request, ['nombre' => 'required', 'peso' => 'required']);
+		$cat = Subcategoria::find($id)->categoria_id;
+		//dd($cat);
+		$subcategorias = Subcategoria::where('id', '!=', $id)->where('categoria_id', $cat)->get();
+		//dd($subcategorias);
+		$suma = 0;
+		foreach ($subcategorias as $subcategoria) {
+			$suma = $suma + $subcategoria->peso;
+		}
+		$suma = $suma + $request->peso;
+		//dd($suma);
+		if ($suma > 1) {
+			//dd("1");
+			return redirect()->route('subcategoria.index')->with('msg', 'No se actualizo, los pesos sumaban mas de 1');
+		} elseif ($suma < 1) {
+			//dd("2");
+			Subcategoria::find($id)->update($request->all());
+			return redirect()->route('subcategoria.index')->with('msg', 'Se actualizo, pero los pesos suman menos de 1');
+		}
+		//dd("3");
 		Subcategoria::find($id)->update($request->all());
 		return redirect()->route('subcategoria.index')->with('success', 'Registro actualizado satisfactoriamente');
 	}

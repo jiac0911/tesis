@@ -66,7 +66,22 @@ class CategoriasController extends Controller {
 	 */
 	public function update(Request $request, $id) {
 		$this->validate($request, ['nombre' => 'required', 'peso' => 'required']);
-
+		$categorias = Categoria::where('id', '!=', $id)->get();
+		$suma = 0;
+		foreach ($categorias as $categoria) {
+			$suma = $suma + $categoria->peso;
+		}
+		$suma = $suma + $request->peso;
+		//dd($suma);
+		if ($suma > 1) {
+			//dd("1");
+			return redirect()->route('categoria.index')->with('msg', 'No se actualizo, los pesos sumaban mas de 1');
+		} elseif ($suma < 1) {
+			//dd("2");
+			categoria::find($id)->update($request->all());
+			return redirect()->route('categoria.index')->with('msg', 'Se actualizo, pero los pesos suman menos de 1');
+		}
+		//dd("3");
 		categoria::find($id)->update($request->all());
 		return redirect()->route('categoria.index')->with('success', 'Registro actualizado satisfactoriamente');
 	}
